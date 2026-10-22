@@ -1,0 +1,536 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta name="theme-color" content="#101820">
+
+    <title>For You — Happy Birthday</title>
+
+    <!-- GOOGLE FONTS -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <!-- JAVASCRIPT -->
+    <script
+        src="{{ url_for('static', filename='js/script.js') }}"
+        defer
+    ></script>
+
+</head>
+
+<body>
+
+    <!-- ===================================
+         BACKGROUND AUDIO PLAYER
+    ==================================== -->
+
+    <audio
+        id="backgroundMusic"
+        preload="metadata">
+    </audio>
+
+
+    <!-- ===================================
+         HEADER
+    ==================================== -->
+
+    <header class="site-header">
+
+        <a href="#home" class="brand">
+            FOR YOU<span>.</span>
+        </a>
+
+        <span class="header-note">
+            A PERSONAL LITTLE SPACE
+        </span>
+
+    </header>
+
+
+    <!-- ===================================
+         SECTION 1: OPENING
+    ==================================== -->
+
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="hero-orbit orbit-one"></div>
+            <div class="hero-orbit orbit-two"></div>
+
+            <div class="hero-content reveal">
+
+                <div class="eyebrow">
+
+                    <span class="eyebrow-line"></span>
+
+                    {{ data.date }}
+
+                </div>
+
+                <p class="hero-overline">
+                    TO SOMEONE REALLY SPECIAL
+                </p>
+
+                <h1>
+
+                    {{ data.title }}
+
+                    <span>
+                        {{ data.subtitle }}
+                    </span>
+
+                </h1>
+
+                <p class="hero-description">
+                    {{ data.intro }}
+                </p>
+
+                <a
+                    href="#letter"
+                    class="primary-button"
+                    id="openLetterButton">
+
+                    OPEN YOUR LETTER
+
+                    <span aria-hidden="true">↗</span>
+
+                </a>
+
+            </div>
+
+            <div class="hero-bottom">
+
+                <span>
+                    MADE ONLY FOR {{ data.name | upper }}
+                </span>
+
+                <span>
+                    SCROLL TO EXPLORE ↓
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- ===================================
+             SECTION 2: BIRTHDAY LETTER
+        ==================================== -->
+
+        <section
+            class="section letter-section"
+            id="letter">
+
+            <div class="section-label reveal">
+
+                <span class="section-number">
+                    01 / 04
+                </span>
+
+                <span>
+                    SOME WORDS FOR YOU
+                </span>
+
+            </div>
+
+
+            <div class="letter-container reveal">
+
+                <p class="small-heading">
+                    A LETTER FOR YOU
+                </p>
+
+                <h2>
+
+                    There are things<br>
+
+                    <em>
+                        I want you to know.
+                    </em>
+
+                </h2>
+
+
+                <div class="letter-body">
+
+                    {% for paragraph in data.letter %}
+
+                    <p>
+                        {{ paragraph }}
+                    </p>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <p class="letter-signature">
+                    {{ data.signature }}
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ===================================
+             SECTION 3: ALL MY WISHES
+        ==================================== -->
+
+        <section
+            class="section wishes-section"
+            id="wishes">
+
+            <div class="section-label reveal">
+
+                <span class="section-number">
+                    02 / 04
+                </span>
+
+                <span>
+                    FROM THE BOTTOM OF MY HEART
+                </span>
+
+            </div>
+
+
+            <div class="section-heading reveal">
+
+                <p class="small-heading">
+                    IF I COULD WISH FOR ANYTHING
+                </p>
+
+                <h2>
+                    All my wishes
+                    <em>for you.</em>
+                </h2>
+
+                <p>
+                    Not just for today, but for all
+                    the days ahead of you.
+                </p>
+
+            </div>
+
+
+            <div class="wish-grid">
+
+                {% for wish in data.wishes %}
+
+                <article class="wish-card reveal">
+
+                    <span class="wish-number">
+                        {{ wish.number }}
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            {{ wish.title }}
+                        </h3>
+
+                        <p>
+                            {{ wish.text }}
+                        </p>
+
+                    </div>
+
+                    <span
+                        class="wish-decoration"
+                        aria-hidden="true">
+                        ↗
+                    </span>
+
+                </article>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <!-- ===================================
+             SECTION 4: MUSIC PLAYLIST
+        ==================================== -->
+
+        <section
+            class="section music-section"
+            id="music">
+
+            <div class="section-label reveal">
+
+                <span class="section-number">
+                    03 / 04
+                </span>
+
+                <span>
+                    THE SOUNDTRACK
+                </span>
+
+            </div>
+
+
+            <div class="section-heading reveal">
+
+                <p class="small-heading">
+                    A LITTLE PLAYLIST
+                </p>
+
+                <h2>
+
+                    Songs that remind<br>
+
+                    <em>
+                        me of you.
+                    </em>
+
+                </h2>
+
+                <p>
+                    Some songs are just songs.
+                    Here are songs that make me think of you.
+                </p>
+
+            </div>
+
+
+            <!-- PLAYLIST -->
+
+            <div class="playlist reveal">
+
+                {% for song in data.songs %}
+
+                <div
+                    class="song-item"
+                    data-song-index="{{ loop.index0 }}">
+
+                    <!-- SONG NUMBER -->
+                    <span class="track-number">
+
+                        {{ "%02d" | format(loop.index) }}
+
+                    </span>
+
+
+                    <!-- SONG COVER -->
+                    <div class="song-cover">
+
+                        <span aria-hidden="true">
+                            ♫
+                        </span>
+
+                    </div>
+
+
+                    <!-- SONG INFORMATION -->
+                    <div class="song-details">
+
+                        <h3>
+                            {{ song.title }}
+                        </h3>
+
+                        <p>
+                            {{ song.artist }}
+                        </p>
+
+                        {% if song.note %}
+
+                        <span class="song-note">
+                            {{ song.note }}
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- SONG PLAY BUTTON -->
+                    <button
+                        type="button"
+                        class="play-button playlist-play"
+
+                        data-index="{{ loop.index0 }}"
+
+                        data-src="{{ url_for('static', filename=song.file) }}"
+
+                        data-title="{{ song.title }}"
+
+                        aria-label="Play {{ song.title }}">
+
+                        <span class="playlist-play-icon">
+                            ▶
+                        </span>
+
+                    </button>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            <p class="music-footnote reveal">
+                EVERY SONG HAS A REASON.
+            </p>
+
+        </section>
+
+
+        <!-- ===================================
+             SECTION 5: ENDING
+        ==================================== -->
+
+        <section
+            class="section ending-section"
+            id="ending">
+
+            <div class="section-label reveal">
+
+                <span class="section-number">
+                    04 / 04
+                </span>
+
+                <span>
+                    ONE LAST THING
+                </span>
+
+            </div>
+
+
+            <div class="ending-content reveal">
+
+                <p class="small-heading">
+                    BEFORE YOU GO
+                </p>
+
+                <h2>
+
+                    Just one<br>
+
+                    <em>
+                        more thing.
+                    </em>
+
+                </h2>
+
+                <p class="ending-intro">
+                    I saved this one for the end.
+                </p>
+
+
+                <button
+                    class="primary-button"
+                    id="revealButton"
+                    type="button"
+
+                    aria-expanded="false"
+                    aria-controls="secretMessage">
+
+                    ONE LAST MESSAGE
+
+                    <span aria-hidden="true">
+                        ↗
+                    </span>
+
+                </button>
+
+
+                <!-- SECRET ENDING MESSAGE -->
+                <div
+                    class="secret-message"
+                    id="secretMessage"
+                    hidden>
+
+                    <div class="secret-line"></div>
+
+                    <p>
+                        {{ data.ending }}
+                    </p>
+
+                    <span>
+                        HAPPY BIRTHDAY, LOVE.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ===================================
+         FOOTER
+    ==================================== -->
+
+    <footer class="site-footer">
+
+        <span>
+            MADE WITH LOVE.
+        </span>
+
+        <a href="#home">
+            BACK TO TOP ↑
+        </a>
+
+        <span>
+            JUST FOR YOU.
+        </span>
+
+    </footer>
+
+
+    <!-- ===================================
+         FLOATING MUSIC CONTROL
+    ==================================== -->
+
+    <button
+        id="musicToggle"
+        class="music-toggle"
+        type="button"
+        aria-label="Play music">
+
+        <span id="musicIcon">
+            ♫
+        </span>
+
+        <span id="musicStatus">
+            PLAY MUSIC
+        </span>
+
+    </button>
+
+
+</body>
+</html>
